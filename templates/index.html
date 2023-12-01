@@ -1,29 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ferramentas</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link
       rel="stylesheet"
       type="text/css"
       href="{{ url_for('static', filename='style.css') }}"
     />
+    <title>Ferramentas</title>
   </head>
-  <body>
-    <h1>Ferramentas</h1>
-
-    <!-- Formulário de Pesquisa por ID -->
-    <form method="GET" action="/search_tool">
-      <label for="search_id">Pesquisar por ID:</label>
-      <input type="text" name="id" id="search_id" required />
-      <button type="submit">Buscar</button>
-    </form>
-
-    <!-- Botão/link para adicionar ferramenta -->
+  <body class="container text-center">
     <button id="showAddTool">Adicionar Ferramenta</button>
-
-    <!-- Contêiner para os campos de adicionar ferramenta -->
+  <form method="GET" action="/search_tool">
+    <div class="form-row align-items-center">
+      <div class="col-sm-3 my-1">
+        <div class="input-group">
+          <input type="text" class="form-control"  name="id" id="search_id" required  placeholder="Pesquisar por ID:">
+        </div>
+      </div>
+      <div class="col-auto my-1">
+        <button type="submit">Buscar</button>
+      </div>
+    </div>
+  </form>
     <div id="addToolContainer">
       <form method="POST" action="/add_tool">
         <label for="tipo">Tipo:</label>
@@ -48,16 +52,36 @@
       </form>
     </div>
 
-    <ul>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Fabricante</th>
+          <th scope="col">Garantia</th>
+          <th scope="col">AÇAO</th>
+        </tr>
+      </thead>
       {% for ferramenta in ferramentas %}
-      <li>
-        {{ ferramenta.tipo }} - {{ ferramenta.fabricante }} - {{
-        ferramenta.garantia }}
-        <a href="{{ url_for('consult_tool', id=ferramenta.id) }}">Consultar</a>
-        <a href="{{ url_for('delete_tool', id=ferramenta.id) }}">Excluir</a>
-      </li>
+      <tbody>
+        <tr>
+          <th scope="row">{{ ferramenta.id }}</th>
+          <td>{{ ferramenta.tipo }}</td>
+          <td>{{ ferramenta.fabricante }}</td>
+          <td>{{ ferramenta.garantia }}</td>
+          <td> <a href="{{ url_for('consult_tool', id=ferramenta.id) }}">Consultar</a> <a href="{{ url_for('delete_tool', id=ferramenta.id) }}">Excluir</a></td>
+        </tr>
+      </tbody>
       {% endfor %}
-    </ul>
+    </table>
+    
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
       // Adiciona um evento de clique ao botão/link para mostrar o contêiner
