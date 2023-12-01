@@ -13,27 +13,40 @@
   <body>
     <h1>Ferramentas</h1>
 
-    <form method="POST" action="/add_tool">
-      <label for="tipo">Tipo:</label>
-      <input type="text" name="tipo" required /><br />
-
-      <label for="fabricante">Fabricante:</label>
-      <input type="text" name="fabricante" required /><br />
-
-      <label for="data_aquisicao">Data Aquisição:</label>
-      <input type="date" name="data_aquisicao" required /><br />
-
-      <label for="data_ultima_calibracao">Data Última Calibração:</label>
-      <input type="date" name="data_ultima_calibracao" required /><br />
-
-      <label for="data_proxima_calibracao">Data Próxima Calibração:</label>
-      <input type="date" name="data_proxima_calibracao" required /><br />
-
-      <label for="garantia">Garantia:</label>
-      <input type="text" name="garantia" required /><br />
-
-      <button type="submit">Adicionar Ferramenta</button>
+    <!-- Formulário de Pesquisa por ID -->
+    <form method="GET" action="/search_tool">
+      <label for="search_id">Pesquisar por ID:</label>
+      <input type="text" name="id" id="search_id" required />
+      <button type="submit">Buscar</button>
     </form>
+
+    <!-- Botão/link para adicionar ferramenta -->
+    <button id="showAddTool">Adicionar Ferramenta</button>
+
+    <!-- Contêiner para os campos de adicionar ferramenta -->
+    <div id="addToolContainer">
+      <form method="POST" action="/add_tool">
+        <label for="tipo">Tipo:</label>
+        <input type="text" name="tipo" required /><br />
+
+        <label for="fabricante">Fabricante:</label>
+        <input type="text" name="fabricante" required /><br />
+
+        <label for="data_aquisicao">Data Aquisição:</label>
+        <input type="date" name="data_aquisicao" required /><br />
+
+        <label for="data_ultima_calibracao">Data Última Calibração:</label>
+        <input type="date" name="data_ultima_calibracao" required /><br />
+
+        <label for="data_proxima_calibracao">Data Próxima Calibração:</label>
+        <input type="date" name="data_proxima_calibracao" required /><br />
+
+        <label for="garantia">Garantia:</label>
+        <input type="text" name="garantia" required /><br />
+
+        <button id="btn-salvar" type="submit">Salvar</button>
+      </form>
+    </div>
 
     <ul>
       {% for ferramenta in ferramentas %}
@@ -45,5 +58,14 @@
       </li>
       {% endfor %}
     </ul>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+      // Adiciona um evento de clique ao botão/link para mostrar o contêiner
+      document
+        .getElementById("showAddTool")
+        .addEventListener("click", function () {
+          document.getElementById("addToolContainer").style.display = "block";
+        });
+    </script>
   </body>
 </html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalhes da Ferramenta</title>
+  </head>
+  <body>
+    <h1>Detalhes da Ferramenta</h1>
+    <ul>
+      <li><strong>ID:</strong> {{ ferramenta.id }}</li>
+      <li><strong>Tipo:</strong> {{ ferramenta.tipo }}</li>
+      <li><strong>Fabricante:</strong> {{ ferramenta.fabricante }}</li>
+      <li><strong>Data Aquisição:</strong> {{ ferramenta.data_aquisicao }}</li>
+      <li>
+        <strong>Data Última Calibração:</strong> {{
+        ferramenta.data_ultima_calibracao }}
+      </li>
+      <li>
+        <strong>Data Próxima Calibração:</strong> {{
+        ferramenta.data_proxima_calibracao }}
+      </li>
+      <li><strong>Garantia:</strong> {{ ferramenta.garantia }}</li>
+    </ul>
+    <a href="{{ url_for('index') }}">Voltar para a página inicial</a>
+  </body>
+</html>

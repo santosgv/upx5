@@ -55,8 +55,16 @@ def delete_tool(id):
     db.session.commit()
     return redirect(url_for('index'))
 
+@app.route('/search_tool', methods=['GET'])
+def search_tool():
+    tool_id = request.args.get('id')
+    ferramenta = Ferramenta.query.get(tool_id)
+    if ferramenta:
+        return render_template('tool_details.html', ferramenta=ferramenta)
+    else:
+        return render_template('tool_not_found.html', tool_id=tool_id)
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    
     app.run(debug=True)
