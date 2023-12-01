@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <title>Gestão de Ferramentas</title>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h2 class="mb-4">Sistema de Gestão de Ferramentas</h2>
+
+      <!-- Pesquisa por ID -->
+      <div class="form-group">
+        <label for="searchTool">Pesquisar por ID:</label>
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            id="searchTool"
+            placeholder="Digite o ID da ferramenta"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              id="searchButton"
+            >
+              Pesquisar
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- ... (o restante do código permanece inalterado) ... -->
+
+      <!-- Modal para Exibir Detalhes da Ferramenta -->
+      <div
+        class="modal fade"
+        id="toolDetailsModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="toolDetailsModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="toolDetailsModalLabel">
+                Detalhes da Ferramenta
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="toolDetailsBody">
+              <!-- Aqui serão exibidos os detalhes da ferramenta -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ... (o restante do código permanece inalterado) ... -->
+
+      <!-- Botão Cadastrar Nova Ferramenta -->
+      <button
+        class="btn btn-primary mb-3"
+        data-toggle="modal"
+        data-target="#addToolModal"
+      >
+        Cadastrar Nova Ferramenta
+      </button>
+
+      <!-- Lista de Ferramentas Cadastradas -->
+      <ul class="list-group" id="toolList">
+        <!-- Aqui será exibida a lista de ferramentas -->
+      </ul>
+    </div>
+
+    <!-- Modal para Cadastrar Nova Ferramenta -->
+    <div
+      class="modal fade"
+      id="addToolModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="addToolModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addToolModalLabel">
+              Cadastrar Nova Ferramenta
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Formulário para Cadastrar Nova Ferramenta -->
+            <form id="addToolForm">
+              <div class="form-group">
+                <label for="type">Tipo de Ferramenta:</label>
+                <input type="text" class="form-control" id="type" required />
+              </div>
+              <div class="form-group">
+                <label for="id">ID da Ferramenta:</label>
+                <input type="text" class="form-control" id="id" required />
+              </div>
+              <div class="form-group">
+                <label for="manufacturer">Fabricante:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="manufacturer"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="acquisitionDate">Data Aquisição:</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="acquisitionDate"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="lastCalibrationDate">Data Última Calibração:</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="lastCalibrationDate"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="nextCalibrationDate"
+                  >Data Próxima Calibração:</label
+                >
+                <input
+                  type="date"
+                  class="form-control"
+                  id="nextCalibrationDate"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="warranty">Garantia:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="warranty"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lista de Ferramentas Cadastradas -->
+    <ul class="list-group" id="toolList">
+      <!-- Aqui será exibida a lista de ferramentas -->
+    </ul>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
